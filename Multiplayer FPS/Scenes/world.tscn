@@ -1,0 +1,108 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8oqxmm2w2wvv"]
+
+[ext_resource type="Script" path="res://Scripts/world.gd" id="1_6tkge"]
+[ext_resource type="PackedScene" uid="uid://csawl5iim0lfj" path="res://Scenes/enviornment.tscn" id="2_3glug"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u5pdl"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_w2qqb"]
+sky_material = SubResource("ProceduralSkyMaterial_u5pdl")
+
+[sub_resource type="Environment" id="Environment_6knbf"]
+background_mode = 2
+sky = SubResource("Sky_w2qqb")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="World" type="Node"]
+script = ExtResource("1_6tkge")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6knbf")
+
+[node name="Enviornment" parent="." instance=ExtResource("2_3glug")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MainMenu" type="PanelContainer" parent="CanvasLayer"]
+custom_minimum_size = Vector2(512, 256)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 423.0
+offset_top = 227.0
+offset_right = -423.0
+offset_bottom = -227.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 32
+text = "Main Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="CheckButton" type="CheckButton" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+keep_pressed_outside = true
+text = "Local"
+
+[node name="Label" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+text = "Server"
+
+[node name="HostButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Host"
+
+[node name="JoinButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Join"
+
+[node name="AddressEntry" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "Enter Address to Join Here"
+alignment = 1
+
+[node name="Address" type="Label" parent="CanvasLayer"]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Address: Local"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Scenes/player.tscn")
+spawn_path = NodePath("..")
+
+[connection signal="toggled" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]

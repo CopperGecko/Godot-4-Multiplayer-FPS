@@ -1,0 +1,99 @@
+[gd_scene load_steps=10 format=3 uid="uid://xcjrjq5cbn7y"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_fvqri"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xk8km"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_67y6s"]
+
+[sub_resource type="Animation" id="Animation_kjq27"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Eyes:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_b5dk2"]
+resource_name = "Spin"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Eyes:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 6.28319)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_orrup"]
+_data = {
+"RESET": SubResource("Animation_kjq27"),
+"Spin": SubResource("Animation_b5dk2")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eohy3"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_vek68"]
+material = SubResource("StandardMaterial3D_eohy3")
+radius = 0.1
+height = 0.2
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_hn37q"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Camera3D:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
+collision_layer = 2
+script = ExtResource("1_fvqri")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_xk8km")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_67y6s")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="Spin_anim" type="AnimationPlayer" parent="Camera3D"]
+libraries = {
+"": SubResource("AnimationLibrary_orrup")
+}
+
+[node name="Eyes" type="Node3D" parent="Camera3D"]
+
+[node name="Right Eye" type="MeshInstance3D" parent="Camera3D/Eyes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, -0.5)
+visibility_range_begin = 0.53
+mesh = SubResource("SphereMesh_vek68")
+skeleton = NodePath("../..")
+
+[node name="Left Eye" type="MeshInstance3D" parent="Camera3D/Eyes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, -0.5)
+visibility_range_begin = 0.53
+mesh = SubResource("SphereMesh_vek68")
+skeleton = NodePath("../..")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_hn37q")
