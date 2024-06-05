@@ -1,4 +1,4 @@
-# Multiplayer FPS Tutorial
+# Multiplayer FPS Demo
 
 This repo is a simple multiplayer demo that anybody can use
 
