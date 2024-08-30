@@ -3,8 +3,6 @@ extends CharacterBody3D
 
 @onready var camera = $Camera3D
 
-var health = 3
-
 const SPEED = 5.5
 const JUMP_VELOCITY = 5.5
 
