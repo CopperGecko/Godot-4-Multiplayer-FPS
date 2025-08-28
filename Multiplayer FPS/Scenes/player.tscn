@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://xcjrjq5cbn7y"]
 
-[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_fvqri"]
+[ext_resource type="Script" uid="uid://dgw2st4ljgqbq" path="res://Scripts/Player.gd" id="1_fvqri"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xk8km"]
 
@@ -38,8 +38,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_orrup"]
 _data = {
-"RESET": SubResource("Animation_kjq27"),
-"Spin": SubResource("Animation_b5dk2")
+&"RESET": SubResource("Animation_kjq27"),
+&"Spin": SubResource("Animation_b5dk2")
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eohy3"]

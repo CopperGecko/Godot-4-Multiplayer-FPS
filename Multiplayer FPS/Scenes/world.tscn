@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c8oqxmm2w2wvv"]
 
-[ext_resource type="Script" path="res://Scripts/world.gd" id="1_6tkge"]
+[ext_resource type="Script" uid="uid://dnqdpnmcw80gn" path="res://Scripts/world.gd" id="1_6tkge"]
 [ext_resource type="PackedScene" uid="uid://csawl5iim0lfj" path="res://Scenes/enviornment.tscn" id="2_3glug"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u5pdl"]
@@ -99,7 +99,7 @@ offset_bottom = 23.0
 text = "Address: Local"
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Scenes/player.tscn")
+_spawnable_scenes = PackedStringArray("uid://xcjrjq5cbn7y")
 spawn_path = NodePath("..")
 
 [connection signal="toggled" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]

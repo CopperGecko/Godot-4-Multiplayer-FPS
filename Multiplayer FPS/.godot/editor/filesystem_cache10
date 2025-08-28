@@ -1,0 +1,12 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1756400351
+icon.png::CompressedTexture2D/CompressedTexture2D::1686667262649360539::1756399777::1756400338::1::::<><><>0<>0<>b8d44ba60ba20b3d8f316ecf06f41056<>res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.ctex::
+README.md::TextFile/TextFile::-1::1756399777::0::1::::<><><>0<>0<><>::
+::res://Scenes/::1756400347
+enviornment.tscn::PackedScene::6037597558884055655::1756400343::0::1::::<><><>0<>0<><>::uid://cr4lr5mkrurvw::::res://Scripts/World Boundary.gd
+player.tscn::PackedScene::1619049469406958580::1756400343::0::1::::<><><>0<>0<><>::uid://dgw2st4ljgqbq::::res://Scripts/Player.gd
+world.tscn::PackedScene::7118987691217281615::1756400347::0::1::::<><><>0<>0<><>::uid://dnqdpnmcw80gn::::res://Scripts/world.gd<>uid://csawl5iim0lfj::::res://Scenes/enviornment.tscn
+::res://Scripts/::1756400337
+Player.gd::GDScript/GDScript::7627483969846847058::1756399777::0::1::::<>CharacterBody3D<><>0<>0<><>::
+World Boundary.gd::GDScript/GDScript::6026618504233336212::1756399777::0::1::::<>Area3D<><>0<>0<><>::
+world.gd::GDScript/GDScript::8104956701788354661::1756399777::0::1::::<>Node<><>0<>0<><>::

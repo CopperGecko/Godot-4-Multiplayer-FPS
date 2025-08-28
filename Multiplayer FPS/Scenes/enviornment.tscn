@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://csawl5iim0lfj"]
 
-[ext_resource type="Script" path="res://Scripts/World Boundary.gd" id="1_rhtns"]
+[ext_resource type="Script" uid="uid://cr4lr5mkrurvw" path="res://Scripts/World Boundary.gd" id="1_rhtns"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m4f5c"]
 albedo_color = Color(0, 0.533333, 0, 1)
